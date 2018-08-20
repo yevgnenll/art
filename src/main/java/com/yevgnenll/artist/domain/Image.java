@@ -2,14 +2,20 @@ package com.yevgnenll.artist.domain;
 
 import java.net.URL;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import lombok.Data;
 
 @Data
+@Table(name = "images")
+@Entity
 public class Image {
 
   @Id
@@ -20,7 +26,10 @@ public class Image {
 
   private String title;
 
-  private long artistId;
+  private String year;
+
+  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+  private Artist artist;
 
   private String description;
 

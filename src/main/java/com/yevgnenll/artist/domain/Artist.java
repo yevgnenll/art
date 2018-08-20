@@ -1,16 +1,21 @@
 package com.yevgnenll.artist.domain;
 
-import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import lombok.Data;
 
 @Data
+@Table(name = "artists")
+@Entity
 public class Artist {
 
   @Id
@@ -20,14 +25,17 @@ public class Artist {
   @Column(length = 45, nullable = false)
   private String name;
 
-  private Date birthYear;
+  private String birthYear;
 
-  private Date deathYear;
+  private String deathYear;
 
   @Column(length = 45)
   private String country;
 
   @Column(length = 45)
   private String genre;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "artist")
+  private List<Image> images;
 
 }
