@@ -7,4 +7,8 @@ import com.yevgnenll.artist.domain.Image;
 
 @Repository
 public interface ImageRepository extends JpaRepository<Image, Long>{
+
+  Image findByTitle(String title);
+  Image findById(long id);
+
 }

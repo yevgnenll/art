@@ -10,6 +10,7 @@ public interface ImageService {
   Image createImage(Image image);
   Page<Image> imageList(Pageable pageable);
   Image imageByTitle(String title);
-  void deleteImage(String title);
+  Image imageById(long id);
+  void deleteImage(long id);
 
 }

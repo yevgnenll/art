@@ -17,21 +17,27 @@ public class ImageServiceImpl implements ImageService {
 
   @Override
   public Image createImage(Image image) {
-    return null;
+    return imageRepository.save(image);
   }
 
   @Override
   public Page<Image> imageList(Pageable pageable) {
-    return null;
+    return imageRepository.findAll(pageable);
   }
 
   @Override
   public Image imageByTitle(String title) {
-    return null;
+    return imageRepository.findByTitle(title);
   }
 
   @Override
-  public void deleteImage(String title) {
+  public Image imageById(long id) {
+    return imageRepository.findById(id);
+  }
 
+  @Override
+  public void deleteImage(long id) {
+    Image image = imageById(id);
+    imageRepository.delete(image);
   }
 }
