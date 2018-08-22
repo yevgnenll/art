@@ -31,7 +31,8 @@ public class ArtistServiceImpl implements ArtistService {
   }
 
   @Override
-  public void deleteArtist(Artist artist) {
+  public void deleteArtist(String name) {
+    Artist artist = artistRepository.findByName(name);
     artistRepository.delete(artist);
   }
 }
