@@ -27,11 +27,11 @@ public class ArtistServiceImpl implements ArtistService {
 
   @Override
   public Artist getArtist(String name) {
-    return null;
+    return artistRepository.findByName(name);
   }
 
   @Override
   public void deleteArtist(Artist artist) {
-
+    artistRepository.delete(artist);
   }
 }
