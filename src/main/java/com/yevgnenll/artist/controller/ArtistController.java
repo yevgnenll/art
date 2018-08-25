@@ -1,6 +1,7 @@
 package com.yevgnenll.artist.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,11 +22,13 @@ public class ArtistController {
   @Autowired
   private ArtistService artistService;
 
+  @Cacheable(cacheNames = "artists")
   @GetMapping(path = "/")
   public Page<Artist> artistList(Pageable pageable) {
     return artistService.artistList(pageable);
   }
 
+  @Cacheable(cacheNames = "artistInfo")
   @GetMapping(path = {"/{name}/", "/{name}"})
   public Artist artistByName(@PathVariable String name) {
     return artistService.getArtist(name);
